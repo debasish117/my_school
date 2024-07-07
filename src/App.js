@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Studentslist from './Components/Studentslist';
+import AddStudent from './Components/AddStudent';
 
 function App() {
+  let studentsList = [
+    {id: 101, firstName: "Swarna", lastName: "dhir"},
+    {id: 102, firstName: "Sony", lastName: "dhir"},
+    {id: 103, firstName: "Roshan", lastName: "dhir"}
+    ]
+
+    const[students, setStudents] = useState(studentsList)
+
+    const addStudent = (arg) => {
+      // add student here....
+      setStudents([...students, arg])
+    }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Studentslist list={students}/>
+      <AddStudent addStudent={addStudent}/>
     </div>
+    
   );
 }
 
